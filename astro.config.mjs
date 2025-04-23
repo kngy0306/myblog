@@ -1,6 +1,5 @@
 // @ts-check
 import { defineConfig, passthroughImageService } from "astro/config";
-
 import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
