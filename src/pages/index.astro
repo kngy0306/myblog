@@ -1,34 +1,32 @@
 ---
 import { getCollection } from "astro:content";
-import Layout from "layouts/Layout.astro";
+import Layout from "@/layouts/Layout.astro";
+
 const posts = (await getCollection("blog")).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 
 <Layout>
   <main>
-    <section>
-      <h1 class="text-5xl font-bold">kona blog</h1>
-      <a href="/about">/about</a>
-      <a href="/blog">/blog</a>
-      <h1 class="text-3l font-bold underline text-blue-400">Hello TailWindCSS v4</h1>
-
+    <div>
       {
         posts.map((post) => (
-          <a href={`/blog/${post.slug}/`}>
-            <div class="flex flex-col gap-2 p-4 border-b border-gray-300">
-              <time class="date">
-                {new Date(post.data.date).toLocaleDateString("ja-JP", {
-                  year: "numeric",
-                  month: "2-digit",
-                  day: "2-digit",
-                })}
-              </time>
-              <h1 class="text-2xl">{post.data.title}</h1>
-              <p class="text-sm">{post.data.description}</p>
-            </div>
-          </a>
+          <div class="py-5">
+            <a href={`/blog/${post.slug}/`}>
+              <div class="flex flex-col gap-2 border-gray-300">
+                <time class="date">
+                  {new Date(post.data.date).toLocaleDateString("ja-JP", {
+                    year: "numeric",
+                    month: "2-digit",
+                    day: "2-digit",
+                  })}
+                </time>
+                <h1 class="text-2xl font-bold">{post.data.title}</h1>
+                <p class="text-base text-muted-foreground">{post.data.description}</p>
+              </div>
+            </a>
+          </div>
         ))
       }
-    </section>
+    </div>
   </main>
 </Layout>
