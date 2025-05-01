@@ -7,7 +7,13 @@ const { title } = Astro.props;
 
 <Layout title={title}>
   <div
-    class="py-5 prose max-w-none prose-h1:text-3xl/15 prose-h1:mt-10 prose-h1:mb-3.5 prose-h1:border-b-2 prose-h2:text-2xl/10 prose-h2:mb-2.5 prose-h2:border-b-2 prose-h3:text-xl prose-a:text-link prose-a:hover:text-link-hover prose-li:m-0"
+    class="py-5 prose max-w-none
+      prose-h1:text-3xl/15 prose-h1:mt-10 prose-h1:mb-3.5 prose-h1:border-b-2
+      prose-h2:text-2xl/10 prose-h2:mb-2.5 prose-h2:border-b-2
+      prose-h3:text-xl
+      prose-a:text-link prose-a:hover:text-link-hover
+      prose-li:m-0
+      prose-code:before:hidden prose-code:after:hidden prose-code:bg-code prose-code:py-1 prose-code:px-2 prose-code:rounded-sm prose-code:font-thin prose-code:align-[.08em]"
   >
     <slot />
   </div>
