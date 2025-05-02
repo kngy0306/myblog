@@ -1,0 +1,72 @@
+---
+title: "DjangoとReactで写真投稿アプリを作る"
+date: 2021-10-10T19:43:12+09:00
+tags: ["Django", "React", "programming"]
+description: "Django(API)とReactを使用した写真投稿アプリの紹介になります。"
+---
+
+import { Image } from "astro:assets";
+import top from "./10-10-top.jpg";
+import edit from "./10-10-edit.jpg";
+import post from "./10-10-post.jpg";
+import photo from "./10-10-photo.jpg";
+import id from "./10-10-id.jpg";
+import menu from "./10-10-menu.jpg";
+
+Django(Django REST framework)と、Reactを使用して写真投稿アプリを作成しました！機能や使用した技術の紹介記事です。
+
+## 完成物
+
+### TOP画面
+
+<Image src={top} alt="top" class="w-3/4 mx-auto rounded-md shadow-lg" />
+
+### 詳細画面
+
+<Image src={edit} alt="edit" class="w-3/4 mx-auto rounded-md shadow-lg" />
+
+### 写真投稿画面
+
+<Image src={post} alt="post" class="w-3/4 mx-auto rounded-md shadow-lg" />
+
+## 環境構築
+
+Dockerを用いて環境構築を行いました。Dockerfile、docker-compose.ymlの中身は以下の記事に記載しています。
+
+[DjangoとReactの開発環境をDockerで構築](https://kona4.com/post/2021/09/2021-09-26-docker/)
+
+## バックエンド
+
+バックエンドでは[Django REST framework](https://www.django-rest-framework.org/)を使用しました。Web APIを構築するためのフレームワークです。
+
+#### GET
+
+<code>photo/</code> にGETメソッドでアクセスすると投稿された写真一覧を返すようにしています。
+
+<Image src={photo} alt="photo" class="w-3/4 mx-auto rounded-md shadow-lg" />
+
+<code>photo/:id</code> /のあとにidを指定してアクセスすることで特定の写真1つを返します。
+
+<Image src={id} alt="id" class="w-3/4 mx-auto rounded-md shadow-lg" />
+
+#### POST
+
+<code>/photo/</code>
+に、**title**、**comment**、**image**をデータとしてPOSTメソッドでアクセスすることで写真を投稿できます。
+
+#### DELETE
+
+<code>/photo/:id</code> にDELETEメソッドでアクセスすることで写真を削除します。
+
+## フロントエンド
+
+フロントエンドではReactを使用しました。また、UIライブラリに[Material UI](https://mui.com/)を使用しました。
+そのおかげで短時間でなんとなくいい感じの見た目を作成することができました。
+
+#### メニューボタンを押した時
+
+<Image src={menu} alt="menu" class="w-3/4 mx-auto rounded-md shadow-lg" />
+
+## 最後に
+
+Material UIを使用することで、TOP画面のように写真を並べるのも簡単にできてしまい、次回以降のReactの開発でもMaterial UIは使っていきたいなーと思いました！
