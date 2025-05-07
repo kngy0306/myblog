@@ -1,0 +1,79 @@
+---
+import type { GetStaticPaths } from "astro";
+import { getCollection } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const posts = (await getCollection("blog")).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+  return paginate(posts, { pageSize: 10 });
+}) satisfies GetStaticPaths;
+
+const { page } = Astro.props;
+---
+
+<Layout>
+  <main>
+    <div class="blog-content">
+      {
+        page.data.map((post) => (
+          <div class="py-5">
+            <a href={`/blog/${post.slug}/`}>
+              <div class="flex flex-col gap-2 border-gray-300">
+                <time class="date">
+                  {new Date(post.data.date).toLocaleDateString("ja-JP", {
+                    year: "numeric",
+                    month: "2-digit",
+                    day: "2-digit",
+                  })}
+                </time>
+                <h1 class="text-2xl font-bold">{post.data.title}</h1>
+                <p class="text-base text-muted-foreground">{post.data.description}</p>
+              </div>
+            </a>
+          </div>
+        ))
+      }
+    </div>
+    <div class="pagination my-10">
+      <Pagination>
+        <PaginationContent>
+          {
+            page.url.prev ? (
+              <PaginationItem className="disabled">
+                <PaginationPrevious href={page.url.prev} />
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationLink href={page.url.prev}>{page.currentPage - 1}</PaginationLink>
+              </PaginationItem>
+            ) : null
+          }
+
+          <PaginationItem>
+            <PaginationLink href={page.url.current} isActive>{page.currentPage}</PaginationLink>
+          </PaginationItem>
+
+          {
+            page.url.next ? (
+              <PaginationItem>
+                <PaginationLink href={page.url.next}>{page.currentPage + 1}</PaginationLink>
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationNext href={page.url.next} />
+              </PaginationItem>
+            ) : null
+          }
+        </PaginationContent>
+      </Pagination>
+    </div>
+  </main>
+</Layout>
