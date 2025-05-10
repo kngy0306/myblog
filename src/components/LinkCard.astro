@@ -1,0 +1,46 @@
+---
+import type { OgObject } from "open-graph-scraper/types";
+import ogs from "open-graph-scraper";
+
+const { url } = Astro.props;
+
+const getOpenGraphData = async (url: string): Promise<OgObject | null> => {
+  const { result, error } = await ogs({ url });
+  if (error) {
+    console.error("Error fetching Open Graph data:", error);
+    return null;
+  }
+
+  return result;
+};
+
+const websiteData = await getOpenGraphData(url);
+const faviconUrl = `https://www.google.com/s2/favicons?sz=14&domain_url=${url}`;
+const imageUrl = websiteData?.ogImage?.[0]?.url;
+const title = websiteData?.ogTitle || websiteData?.ogSiteName || "No title found";
+const description = websiteData?.ogDescription;
+const siteName = websiteData?.ogSiteName;
+const domain = new URL(url).hostname.replace("www.", "");
+---
+
+<div
+  class="not-prose my-6 h-32 rounded-lg overflow-hidden border border-slate-200 bg-background hover:bg-slate-100 shadow-sm transition-all no-underline"
+>
+  <a href={url} target="_blank" rel="noopener noreferrer" class="flex flex-row h-32">
+    <div class="flex flex-1 flex-col justify-center py-1 px-4 wrap-break-word">
+      <div class="text-[1rem]/6 font-semibold text-foreground line-clamp-2">{title}</div>
+      {description && <div class="mt-1 text-sm text-gray-600 line-clamp-1">{description}</div>}
+      <div class="flex flex-row mt-2.5 items-center text-sm text-gray-500">
+        <img src={faviconUrl} alt="site favicon" class="not-prose h-4 w-4 mr-1" />
+        {siteName || domain}
+      </div>
+    </div>
+    {
+      imageUrl && (
+        <div class="relative h-32 w-32 sm:w-auto">
+          <img src={imageUrl} alt={title} class="not-prose w-full h-full object-cover" />
+        </div>
+      )
+    }
+  </a>
+</div>
