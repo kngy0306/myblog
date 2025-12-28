@@ -14,6 +14,14 @@ const { title } = Astro.props;
     <link rel="icon" type="image/x-icon" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title ? title : "kona blog"}</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-R5MLCB348G"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-R5MLCB348G');
+    </script>
   </head>
   <body>
     <div class="px-4 sm:px-10 max-w-4xl mx-auto my-0 wrap-anywhere">
