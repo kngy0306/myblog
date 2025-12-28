@@ -15,9 +15,15 @@ type Props = CollectionEntry<"blog">;
 
 const post: Props = Astro.props;
 const { Content } = await render(post);
+
+const ogImageSrc = post.data.ogImage?.src;
 ---
 
-<BlogLayout title={post.data.title}>
+<BlogLayout
+  title={post.data.title}
+  description={post.data.description}
+  ogImage={ogImageSrc}
+>
   <time class="date text-muted-foreground">
     {
       new Date(post.data.date).toLocaleDateString("ja-JP", {
