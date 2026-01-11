@@ -16,7 +16,8 @@ type Props = CollectionEntry<"blog">;
 const post: Props = Astro.props;
 const { Content } = await render(post);
 
-const ogImageSrc = post.data.ogImage?.src;
+// Use dynamic OGP image
+const ogImageSrc = `/blog/${post.slug}.og.png`;
 ---
 
 <BlogLayout
