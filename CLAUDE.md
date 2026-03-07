@@ -1,8 +1,4 @@
-# CLAUDE.md
-
-このファイルはClaude Codeがこのリポジトリを理解するためのコンテキストを提供します。
-
-## プロジェクト概要
+# プロジェクト概要
 
 「こなぶろぐ」- Astro 5を使用した個人技術ブログサイト。学習のアウトプットとして運用されている。
 
@@ -74,15 +70,9 @@ pnpm format   # Prettierでフォーマット
 
 - `@/*` → `./src/*`（tsconfig.jsonで設定）
 
-## 主要な機能
+## 機能
 
 - **ページネーション**: 10記事/ページでトップページに表示
 - **LinkCard**: URLからOGP情報を取得してカード表示（open-graph-scraper使用）
 - **レスポンシブ**: モバイル対応レイアウト
 - **Markdown拡張**: remark-breaksで改行対応
-
-## 注意事項
-
-- 日本語サイト（lang="ja"）
-- サイト名: 「こなぶろぐ」（kona blog）
-- Tailwind CSS 4を使用（@tailwindcss/viteプラグイン経由）
