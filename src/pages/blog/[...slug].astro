@@ -25,15 +25,17 @@ const ogImageSrc = `/blog/${post.slug}.og.png`;
   description={post.data.description}
   ogImage={ogImageSrc}
 >
-  <time class="date text-muted-foreground">
-    {
-      new Date(post.data.date).toLocaleDateString("ja-JP", {
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit",
-      })
-    }
-  </time>
-  <span class="block text-4xl font-bold mt-2 mb-15">{post.data.title}</span>
+  <div class="not-prose mb-10">
+    <time class="text-sm text-muted-foreground tracking-wide">
+      {
+        new Date(post.data.date).toLocaleDateString("ja-JP", {
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+        })
+      }
+    </time>
+    <h1 class="text-[1.75rem] font-bold leading-snug mt-3">{post.data.title}</h1>
+  </div>
   <Content />
 </BlogLayout>
