@@ -8,16 +8,16 @@ import type { ReactElement } from "react";
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
   return posts.map((post) => ({
-    params: { slug: post.slug },
+    params: { id: post.id },
   }));
 }
 
 export const GET: APIRoute = async ({ params }) => {
-  const { slug } = params;
+  const { id } = params;
 
   // Get blog post
   const posts = await getCollection("blog");
-  const post = posts.find((p) => p.slug === slug);
+  const post = posts.find((p) => p.id === id);
 
   if (!post) {
     return new Response("Post not found", { status: 404 });
