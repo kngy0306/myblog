@@ -1,10 +1,10 @@
 # プロジェクト概要
 
-「こなぶろぐ」- Astro 5を使用した個人技術ブログサイト。学習のアウトプットとして運用されている。
+「こなぶろぐ」- Astro 6を使用した個人技術ブログサイト。学習のアウトプットとして運用されている。
 
 ## 技術スタック
 
-- **フレームワーク**: Astro 5.7.4
+- **フレームワーク**: Astro 6.0
 - **UI**: React 19 + Tailwind CSS 4
 - **コンテンツ**: MDX (Markdown + JSX)
 - **スタイリング**: Tailwind CSS + @tailwindcss/typography
@@ -21,7 +21,6 @@ src/
 │   ├── LinkCard.astro   # OGP対応リンクカード
 │   └── ui/              # shadcn/ui風コンポーネント（pagination, button）
 ├── content/
-│   ├── config.ts        # コンテンツコレクション定義
 │   └── blog/            # ブログ記事（34記事）
 ├── layouts/
 │   ├── Layout.astro     # ベースレイアウト
@@ -49,7 +48,7 @@ pnpm format   # Prettierでフォーマット
 
 ## コンテンツ管理
 
-### ブログ記事のスキーマ（src/content/config.ts）
+### ブログ記事のスキーマ（src/content.config.ts）
 
 ```typescript
 {
