@@ -32,8 +32,8 @@ const domain = new URL(url).hostname.replace("www.", "");
   <a href={url} target="_blank" rel="noopener noreferrer" class="flex flex-row h-32">
     <div class="flex flex-1 flex-col justify-center py-1 px-4 wrap-break-word">
       <div class="text-[1rem]/6 font-semibold text-foreground line-clamp-2">{title}</div>
-      {description && <div class="mt-1 text-sm text-gray-600 line-clamp-1">{description}</div>}
-      <div class="flex flex-row mt-2.5 items-center text-sm text-gray-500">
+      {description && <div class="mt-1 text-sm text-muted-foreground line-clamp-1">{description}</div>}
+      <div class="flex flex-row mt-2.5 items-center text-sm text-muted-foreground">
         <img src={faviconUrl} alt="site favicon" class="not-prose h-4 w-4 mr-1" />
         {siteName || domain}
       </div>
