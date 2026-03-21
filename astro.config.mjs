@@ -1,5 +1,9 @@
 // @ts-check
-import { defineConfig, passthroughImageService } from "astro/config";
+import {
+  defineConfig,
+  fontProviders,
+  passthroughImageService,
+} from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import mdx from "@astrojs/mdx";
 import remarkBreaks from "remark-breaks";
@@ -19,4 +23,12 @@ export default defineConfig({
   },
 
   integrations: [mdx(), react()],
+
+  fonts: [
+    {
+      provider: fontProviders.google(),
+      name: "Noto Sans JP",
+      cssVariable: "--font-noto-sans-jp",
+    },
+  ],
 });
