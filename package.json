@@ -39,6 +39,7 @@
 		"prettier": "^3.5.3",
 		"prettier-plugin-astro": "^0.14.1",
 		"tw-animate-css": "^1.2.8",
+		"typescript": "^6.0.0",
 		"typescript-eslint": "^8.31.0"
 	}
 }
