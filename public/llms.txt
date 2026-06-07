@@ -1,0 +1,25 @@
+# こなぶろぐ
+
+> 「こな」が運営する個人技術ブログ。Ruby (Rails) / TypeScript (React) / Go を中心に、ソフトウェアエンジニアとしての学習アウトプットを公開しています。コンテンツ言語は主に日本語です。
+
+## サイト情報
+
+- サイト名: こなぶろぐ
+- URL: https://kona4.com
+- 運営者: こな (kona) / Software Engineer (Japan)
+- GitHub: https://github.com/kngy0306
+- 言語: 日本語 (ja)
+- 利用ポリシー: AI による学習・検索・引用すべて許可。引用時は記事 URL を明示してください。
+
+## 主要ページ
+
+- [トップページ（記事一覧）](https://kona4.com/): 新着順の記事一覧。10件ずつページネーションされます。
+- [About](https://kona4.com/about/): 運営者プロフィール。
+- [RSS フィード](https://kona4.com/rss.xml): 全記事の RSS 2.0 フィード。
+- [サイトマップ](https://kona4.com/sitemap.xml): 全 URL の XML サイトマップ。
+
+## コンテンツの取り扱い
+
+- 各記事ページ (`/blog/<id>/`) には schema.org の `BlogPosting` 構造化データが埋め込まれています。タイトル・公開日・著者・タグ・概要を JSON-LD から取得できます。
+- 動的 OGP 画像は `/blog/<id>.og.png` で配信しています。
+- 記事本文は MDX で書かれており、HTML としては `<article>` 要素にラップされて出力されます。
