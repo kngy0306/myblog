@@ -6,12 +6,35 @@ interface Props {
   title: string;
   description?: string;
   ogImage?: string;
+  pageType?: "website" | "article";
+  publishedTime?: Date;
+  modifiedTime?: Date;
+  tags?: string[];
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 
-const { title, description, ogImage } = Astro.props;
+const {
+  title,
+  description,
+  ogImage,
+  pageType,
+  publishedTime,
+  modifiedTime,
+  tags,
+  jsonLd,
+} = Astro.props;
 ---
 
-<Layout title={title} description={description} ogImage={ogImage}>
+<Layout
+  title={title}
+  description={description}
+  ogImage={ogImage}
+  pageType={pageType}
+  publishedTime={publishedTime}
+  modifiedTime={modifiedTime}
+  tags={tags}
+  jsonLd={jsonLd}
+>
   <div class="py-10 prose">
     <slot />
   </div>

@@ -16,26 +16,94 @@ type Props = CollectionEntry<"blog">;
 const post: Props = Astro.props;
 const { Content } = await render(post);
 
-// Use dynamic OGP image
 const ogImageSrc = `/blog/${post.id}.og.png`;
+
+const siteBase = Astro.site ?? new URL("https://kona4.com");
+const postUrl = new URL(`/blog/${post.id}/`, siteBase).toString();
+const ogImageURL = new URL(ogImageSrc, siteBase).toString();
+const publishedTime = post.data.date;
+const modifiedTime = post.data.updatedDate ?? post.data.date;
+
+const blogPostingJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: post.data.title,
+  description: post.data.description,
+  image: ogImageURL,
+  datePublished: publishedTime.toISOString(),
+  dateModified: modifiedTime.toISOString(),
+  inLanguage: "ja",
+  keywords: post.data.tags,
+  author: {
+    "@type": "Person",
+    name: "こな",
+    url: new URL("/about/", siteBase).toString(),
+    sameAs: ["https://github.com/kngy0306"],
+  },
+  publisher: {
+    "@type": "Person",
+    name: "こな",
+    url: new URL("/about/", siteBase).toString(),
+  },
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": postUrl,
+  },
+  url: postUrl,
+};
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "ホーム",
+      item: siteBase.toString(),
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: post.data.title,
+      item: postUrl,
+    },
+  ],
+};
 ---
 
 <BlogLayout
   title={post.data.title}
   description={post.data.description}
   ogImage={ogImageSrc}
+  pageType="article"
+  publishedTime={publishedTime}
+  modifiedTime={modifiedTime}
+  tags={post.data.tags}
+  jsonLd={[blogPostingJsonLd, breadcrumbJsonLd]}
 >
-  <div class="not-prose mb-10">
-    <time class="text-sm text-muted-foreground tracking-wide">
+  <article>
+    <header class="not-prose mb-1">
+      <time class="text-sm text-muted-foreground tracking-wide" datetime={publishedTime.toISOString()}>
+        {
+          publishedTime.toLocaleDateString("ja-JP", {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+          })
+        }
+      </time>
+      <h1 class="text-[1.75rem] font-bold leading-snug">{post.data.title}</h1>
       {
-        new Date(post.data.date).toLocaleDateString("ja-JP", {
-          year: "numeric",
-          month: "2-digit",
-          day: "2-digit",
-        })
+        post.data.tags && post.data.tags.length > 0 && (
+          <ul class="flex flex-wrap gap-2 list-none p-0">
+            {post.data.tags.map((tag) => (
+              <li class="text-xs text-muted-foreground">#{tag}</li>
+            ))}
+          </ul>
+        )
       }
-    </time>
-    <h1 class="text-[1.75rem] font-bold leading-snug mt-3">{post.data.title}</h1>
-  </div>
-  <Content />
+    </header>
+    <Content />
+  </article>
 </BlogLayout>
