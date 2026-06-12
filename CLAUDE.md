@@ -40,10 +40,11 @@ src/
 ## 開発コマンド
 
 ```bash
-pnpm dev      # 開発サーバー起動
-pnpm build    # 本番ビルド
-pnpm preview  # ビルド結果のプレビュー
-pnpm format   # Prettierでフォーマット
+bun install      # 依存関係のインストール
+bun run dev      # 開発サーバー起動
+bun run build    # 本番ビルド
+bun run preview  # ビルド結果のプレビュー
+bun run format   # Prettierでフォーマット
 ```
 
 ## コンテンツ管理
