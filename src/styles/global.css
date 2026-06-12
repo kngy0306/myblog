@@ -124,6 +124,20 @@ body {
   line-height: 1.4;
 }
 
+@media (max-width: 639px) {
+  .prose h1 {
+    font-size: 1.65rem;
+  }
+
+  .prose h2 {
+    font-size: 1.4rem;
+  }
+
+  .prose h3 {
+    font-size: 1.15rem;
+  }
+}
+
 /* Links */
 .prose a:not(.not-prose *, .not-prose) {
   color: var(--link-color);
