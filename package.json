@@ -42,7 +42,7 @@
 		"prettier": "^3.5.3",
 		"prettier-plugin-astro": "^0.14.1",
 		"tw-animate-css": "^1.2.8",
-		"typescript": "^6.0.0",
+		"typescript": "7.0.0-rc",
 		"typescript-eslint": "^8.31.0"
 	}
 }
