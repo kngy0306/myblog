@@ -10,7 +10,8 @@
     },
     "jsx": "react-jsx",
     "jsxImportSource": "react",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "types": ["bun-types"]
   },
   "include": [
     ".astro/types.d.ts",
