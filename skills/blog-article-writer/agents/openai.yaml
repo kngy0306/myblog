@@ -1,0 +1,4 @@
+interface:
+  display_name: "Blog Article Writer"
+  short_description: "読みやすいブログ記事の執筆支援"
+  default_prompt: "Use $blog-article-writer to draft a readable, source-grounded blog article."
