@@ -4,6 +4,7 @@ import {
   fontProviders,
   passthroughImageService,
 } from "astro/config";
+import { unified } from "@astrojs/markdown-remark";
 import tailwindcss from "@tailwindcss/vite";
 import mdx from "@astrojs/mdx";
 import remarkBreaks from "remark-breaks";
@@ -17,7 +18,9 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
   markdown: {
-    remarkPlugins: [remarkBreaks],
+    processor: unified({
+      remarkPlugins: [remarkBreaks],
+    }),
   },
   image: {
     service: passthroughImageService(),
