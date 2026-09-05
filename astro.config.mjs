@@ -39,6 +39,9 @@ export default defineConfig({
       provider: fontProviders.google(),
       name: "Noto Sans JP",
       cssVariable: "--font-noto-sans-jp",
+      display: "optional",
+      // 日本語フォントのメトリクスによる代替欧文フォントの過剰な拡大を防ぐ。
+      optimizedFallbacks: false,
     },
   ],
 });
