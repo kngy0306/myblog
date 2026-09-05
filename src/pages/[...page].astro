@@ -18,34 +18,69 @@ export const getStaticPaths = (async ({ paginate }) => {
 }) satisfies GetStaticPaths;
 
 const { page } = Astro.props;
+
+const postAccents = [
+  { color: "#2667ff", soft: "#e7eeff", rgb: "38 103 255" },
+  { color: "#df642f", soft: "#fff0e7", rgb: "223 100 47" },
+  { color: "#168b75", soft: "#e2f5ef", rgb: "22 139 117" },
+];
 ---
 
 <Layout>
-  <main>
-    <div class="blog-content">
+  <main class="home-page">
+    {page.currentPage === 1 && (
+      <section class="home-hero" aria-labelledby="home-heading">
+        <p class="home-eyebrow">THINGS I LEARNED, BUILT, AND WONDERED.</p>
+        <h1 id="home-heading">学びと試行錯誤のログ。</h1>
+        <p class="home-intro">知ったこと、作ったもの、考えたことを記録しています。</p>
+      </section>
+    )}
+
+    <section class="post-index" aria-labelledby="post-index-heading">
+      <div class="post-index-header">
+        <h2 id="post-index-heading">Latest notes</h2>
+        <span>{String(page.total).padStart(2, "0")} articles</span>
+      </div>
+
+      <div class="post-list">
       {
-        page.data.map((post) => (
-          <article class="py-5">
-            <a href={`/blog/${post.id}/`}>
-              <div class="flex flex-col gap-2 border-gray-300">
-                <time class="date" datetime={post.data.date.toISOString()}>
+        page.data.map((post, index) => {
+          const accent = postAccents[index % postAccents.length];
+          const tag = post.data.tags?.[0] ?? "Note";
+
+          return (
+            <article
+              class="post-item"
+              style={`--post-accent: ${accent.color}; --post-soft: ${accent.soft};`}
+              data-cursor-color={accent.rgb}
+            >
+              <a class="post-link" href={`/blog/${post.id}/`}>
+                <div class="post-meta">
+                  <span class="post-tag">{tag}</span>
+                  <time datetime={post.data.date.toISOString()}>
                   {post.data.date.toLocaleDateString("ja-JP", {
                     year: "numeric",
                     month: "2-digit",
                     day: "2-digit",
                   })}
-                </time>
-                <h2 class="text-2xl font-bold">{post.data.title}</h2>
-                <p class="text-base text-muted-foreground">{post.data.description}</p>
-              </div>
-            </a>
-          </article>
-        ))
+                  </time>
+                </div>
+                <div class="post-copy">
+                  <h3>{post.data.title}</h3>
+                  {post.data.description && <p>{post.data.description}</p>}
+                </div>
+                <span class="post-arrow" aria-hidden="true">↗</span>
+              </a>
+            </article>
+          );
+        })
       }
-    </div>
-    <div class="pagination my-10">
+      </div>
+    </section>
+
+    <div class="home-pagination">
       <Pagination>
-        <PaginationContent>
+        <PaginationContent className="pagination-list">
           {
             page.url.prev ? (
               <PaginationItem className="disabled">
@@ -74,5 +109,42 @@ const { page } = Astro.props;
         </PaginationContent>
       </Pagination>
     </div>
+
+    <div class="cursor-bloom" aria-hidden="true"></div>
   </main>
 </Layout>
+
+<script>
+  const bloom = document.querySelector<HTMLElement>(".cursor-bloom");
+  const pointerQuery = window.matchMedia("(pointer: fine)");
+  const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  if (bloom && pointerQuery.matches && !motionQuery.matches) {
+    let frame = 0;
+
+    window.addEventListener("pointermove", (event) => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        bloom.style.setProperty("--cursor-x", `${event.clientX}px`);
+        bloom.style.setProperty("--cursor-y", `${event.clientY}px`);
+        bloom.classList.add("is-visible");
+      });
+    });
+
+    document.querySelectorAll<HTMLElement>(".post-item").forEach((post) => {
+      const showPostColor = () => {
+        bloom.style.setProperty("--cursor-color", post.dataset.cursorColor ?? "96 210 177");
+      };
+      const showDefaultColor = () => {
+        bloom.style.setProperty("--cursor-color", "96 210 177");
+      };
+
+      post.addEventListener("pointerenter", showPostColor);
+      post.addEventListener("pointerleave", showDefaultColor);
+      post.addEventListener("focusin", showPostColor);
+      post.addEventListener("focusout", showDefaultColor);
+    });
+
+    document.documentElement.addEventListener("mouseleave", () => bloom.classList.remove("is-visible"));
+  }
+</script>
