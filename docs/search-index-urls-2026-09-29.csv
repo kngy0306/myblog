@@ -1,0 +1,40 @@
+url,http_status_2026_09_29,canonical,robots,gsc_report_status_2026_09_21,individual_inspection_2026_09_29,title
+https://kona4.com/,200,https://kona4.com/,"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",登録済み,,こなぶろぐ
+https://kona4.com/2/,200,https://kona4.com/2/,"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",403,ライブテスト: 登録可能（登録完了ではない）,こなぶろぐ
+https://kona4.com/3/,200,https://kona4.com/3/,"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",クロール済み・インデックス未登録,,こなぶろぐ
+https://kona4.com/4/,200,https://kona4.com/4/,"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",レポートで未確認,,こなぶろぐ
+https://kona4.com/about/,200,https://kona4.com/about/,"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",403,,こなぶろぐ
+https://kona4.com/blog/2021-01-08-first/,200,https://kona4.com/blog/2021-01-08-first/,"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",レポートで未確認,,Hugoでブログを作りました！ | こなぶろぐ
+https://kona4.com/blog/2021-01-11-retrospective/,200,https://kona4.com/blog/2021-01-11-retrospective/,"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",レポートで未確認,,2021年1月  1週目振り返り | こなぶろぐ
+https://kona4.com/blog/2021-01-12-dns/,200,https://kona4.com/blog/2021-01-12-dns/,"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",レポートで未確認,,Aレコードについて | こなぶろぐ
+https://kona4.com/blog/2021-01-13-gooutput/,200,https://kona4.com/blog/2021-01-13-gooutput/,"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",レポートで未確認,,入門Goプログラミングのアウトプット | こなぶろぐ
+https://kona4.com/blog/2021-01-16-gooutput/,200,https://kona4.com/blog/2021-01-16-gooutput/,"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",レポートで未確認,,【Go】structの埋め込みについて | こなぶろぐ
+https://kona4.com/blog/2021-01-18-retrospective/,200,https://kona4.com/blog/2021-01-18-retrospective/,"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",レポートで未確認,,2021年1月  2週目振り返り | こなぶろぐ
+https://kona4.com/blog/2021-01-25-retrospective/,200,https://kona4.com/blog/2021-01-25-retrospective/,"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",クロール済み・インデックス未登録,,2021年1月  3週目振り返り | こなぶろぐ
+https://kona4.com/blog/2021-02-02-retrospective/,200,https://kona4.com/blog/2021-02-02-retrospective/,"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",クロール済み・インデックス未登録,,2021年1月  4週目振り返り | こなぶろぐ
+https://kona4.com/blog/2021-09-26-docker/,200,https://kona4.com/blog/2021-09-26-docker/,"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",クロール済み・インデックス未登録,,DjangoとReactの開発環境をDockerで構築 | こなぶろぐ
+https://kona4.com/blog/2021-10-02-gadget/,200,https://kona4.com/blog/2021-10-02-gadget/,"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",クロール済み・インデックス未登録,,初めて4Kモニターを買いました！ | こなぶろぐ
+https://kona4.com/blog/2021-10-03-oop/,200,https://kona4.com/blog/2021-10-03-oop/,"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",クロール済み・インデックス未登録,,オブジェクト指向プログラミングについて学んだことメモ | こなぶろぐ
+https://kona4.com/blog/2021-10-10-photoapp/,200,https://kona4.com/blog/2021-10-10-photoapp/,"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",クロール済み・インデックス未登録,,DjangoとReactで写真投稿アプリを作る | こなぶろぐ
+https://kona4.com/blog/2021-10-16-flutter-turorial/,200,https://kona4.com/blog/2021-10-16-flutter-turorial/,"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",クロール済み・インデックス未登録,,Flutter公式 最初のチュートリアルをやってみた | こなぶろぐ
+https://kona4.com/blog/2021-10-20-sqltocsv/,200,https://kona4.com/blog/2021-10-20-sqltocsv/,"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",403,,【MySQL】クエリの結果をcsv形式でファイルに保存する | こなぶろぐ
+https://kona4.com/blog/2021-12-10-twitterapi/,200,https://kona4.com/blog/2021-12-10-twitterapi/,"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",クロール済み・インデックス未登録,,TwitterAPIを使って乃木坂46公式アカウントの投稿を取得する【JavaScript】 | こなぶろぐ
+https://kona4.com/blog/2021-12-26-hurusato/,200,https://kona4.com/blog/2021-12-26-hurusato/,"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",クロール済み・インデックス未登録,,新卒1年目がふるさと納税をやるときに意識したこと | こなぶろぐ
+https://kona4.com/blog/2022-01-22-fish/,200,https://kona4.com/blog/2022-01-22-fish/,"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",クロール済み・インデックス未登録,保存済み検査: 取得成功・登録許可・自己canonical・未登録,【M1 Mac】シェルをfish shellにした | こなぶろぐ
+https://kona4.com/blog/cors/,200,https://kona4.com/blog/cors/,"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",403,,CORSについて | こなぶろぐ
+https://kona4.com/blog/db_transaction/,200,https://kona4.com/blog/db_transaction/,"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",403,,DBトランザクションの分離レベルについて | こなぶろぐ
+https://kona4.com/blog/di/,200,https://kona4.com/blog/di/,"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",レポートで未確認,URLがGoogleに認識されていません,PHPで理解するDI | こなぶろぐ
+https://kona4.com/blog/docker-mysql/,200,https://kona4.com/blog/docker-mysql/,"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",クロール済み・インデックス未登録,,Laravelで使用するMySQLをDockerで用意する【M1 Mac】 | こなぶろぐ
+https://kona4.com/blog/ec2-planetscale/,200,https://kona4.com/blog/ec2-planetscale/,"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",403,,EC2からPlanetScaleへ接続したときのエラー解消 | こなぶろぐ
+https://kona4.com/blog/rails_cookies/,200,https://kona4.com/blog/rails_cookies/,"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",403,,Railsでクッキーを扱う | こなぶろぐ
+https://kona4.com/blog/rails_validates_method/,200,https://kona4.com/blog/rails_validates_method/,"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",403,,【Rails】セキュリティに関わりが大きそうなバリデーションヘルパーを試す | こなぶろぐ
+https://kona4.com/blog/react-rails-project/,200,https://kona4.com/blog/react-rails-project/,"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",403,,React + Rails プロジェクトをDockerで構築する | こなぶろぐ
+https://kona4.com/blog/recaptcha/,200,https://kona4.com/blog/recaptcha/,"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",403,,CAPTCHAの概要とreCAPTCHAについて | こなぶろぐ
+https://kona4.com/blog/regularization/,200,https://kona4.com/blog/regularization/,"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",403,,DBの正規化について | こなぶろぐ
+https://kona4.com/blog/retrospective_2022/,200,https://kona4.com/blog/retrospective_2022/,"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",403,,2022年の振り返り | こなぶろぐ
+https://kona4.com/blog/retrospective_2023/,200,https://kona4.com/blog/retrospective_2023/,"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",登録済み,,2023年振り返り | こなぶろぐ
+https://kona4.com/blog/ruby_method/,200,https://kona4.com/blog/ruby_method/,"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",クロール済み・インデックス未登録,,Rubyのさまざまな変数についてまとめました | こなぶろぐ
+https://kona4.com/blog/ruby_module/,200,https://kona4.com/blog/ruby_module/,"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",403,,putsメソッドはなぜどこでも使用することができるのか | こなぶろぐ
+https://kona4.com/blog/security_sql/,200,https://kona4.com/blog/security_sql/,"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",403,,「安全なSQLの呼び出し方」で学ぶSQLのセキュリティ | こなぶろぐ
+https://kona4.com/blog/type-object/,200,https://kona4.com/blog/type-object/,"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",403,ライブテスト: 登録可能（登録完了ではない）,TypeScriptにおける、部分型について | こなぶろぐ
+https://kona4.com/blog/usecontext/,200,https://kona4.com/blog/usecontext/,"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",レポートで未確認,,（自分用メモ）useContextの使い方 | こなぶろぐ
