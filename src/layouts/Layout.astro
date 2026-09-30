@@ -59,7 +59,7 @@ const jsonLdString = JSON.stringify(jsonLdGraph).replace(/</g, "\\u003c");
 ---
 
 <!doctype html>
-<html lang="ja">
+<html lang="ja" class="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -133,6 +133,16 @@ const jsonLdString = JSON.stringify(jsonLdGraph).replace(/</g, "\\u003c");
       set:html={jsonLdString}
     />
 
+    <!-- Theme initialization (inline to prevent FOUC) -->
+    <script is:inline>
+      (function () {
+        const stored = localStorage.getItem("theme");
+        if (stored === "dark" || (!stored && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+          document.documentElement.classList.remove("light");
+          document.documentElement.classList.add("dark");
+        }
+      })();
+    </script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-R5MLCB348G"></script>
     <script is:inline>
