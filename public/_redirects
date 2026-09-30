@@ -1,0 +1,10 @@
+# Previous sitemap and RSS endpoints
+/sitemap.xml /sitemap-index.xml 301
+/index.xml /rss.xml 301
+/page/index.xml /rss.xml 301
+
+# Known article URLs from the previous blog
+/post/2023/12/retrospective/ /blog/retrospective_2023/ 301
+/post/2023/12/retrospective /blog/retrospective_2023/ 301
+/post/2021/09/2021-09-26-docker/ /blog/2021-09-26-docker/ 301
+/post/2021/09/2021-09-26-docker /blog/2021-09-26-docker/ 301
