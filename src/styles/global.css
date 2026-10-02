@@ -4,6 +4,11 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* スクロールバーの有無でレイアウトが横にずれないよう領域を常に確保する */
+html {
+  scrollbar-gutter: stable;
+}
+
 body {
   margin: 0;
   padding: 0;
