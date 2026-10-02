@@ -32,6 +32,7 @@ type PaginationLinkProps = {
 function PaginationLink({ className, isActive, size = "lg", ...props }: PaginationLinkProps) {
   return (
     <a
+      data-astro-prefetch=""
       aria-current={isActive ? "page" : undefined}
       data-slot="pagination-link"
       data-active={isActive}
