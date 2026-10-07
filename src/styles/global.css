@@ -101,12 +101,18 @@ body {
   margin-right: auto;
 }
 
+/* Paragraphs */
+.prose p:not(.not-prose *, .not-prose) {
+  margin-top: 0.6rem;
+  margin-bottom: 0;
+}
+
 /* Headings */
 .prose h1:not(.not-prose *, .not-prose) {
   font-size: 1.5rem;
   font-weight: 700;
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
+  margin-top: 3.5rem;
+  margin-bottom: 1rem;
   line-height: 1.3;
 }
 
