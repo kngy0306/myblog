@@ -27,8 +27,30 @@ export const GET: APIRoute = async ({ params }) => {
   const fontRegular = await fs.readFile("./public/fonts/NotoSansJP-Regular.ttf");
   const fontBold = await fs.readFile("./public/fonts/NotoSansJP-Bold.ttf");
 
-  // Load logo and convert to base64
-  const logoBuffer = await fs.readFile("./public/logo.png");
+  const titleFontSize = 55;
+
+  // Align the line with the visible edge of the first glyph, including its side bearing.
+  const firstGlyphSvg = await satori(
+    {
+      type: "div",
+      props: {
+        style: { fontFamily: "Noto Sans JP", fontSize: titleFontSize, fontWeight: 700 },
+        children: Array.from(post.data.title)[0],
+      },
+    } as ReactElement,
+    {
+      width: titleFontSize * 2,
+      height: titleFontSize * 2,
+      fonts: [{ name: "Noto Sans JP", data: fontBold, weight: 700, style: "normal" }],
+    },
+  );
+  const { info: firstGlyphBounds } = await sharp(Buffer.from(firstGlyphSvg))
+    .trim()
+    .toBuffer({ resolveWithObject: true });
+  const titleInkOffset = Math.abs(firstGlyphBounds.trimOffsetLeft ?? 0);
+
+  // Use the same artwork as the site favicon.
+  const logoBuffer = await sharp("./public/favicon.svg").resize(80, 80).png().toBuffer();
   const logoBase64 = `data:image/png;base64,${logoBuffer.toString("base64")}`;
 
   // Create SVG using satori
@@ -42,38 +64,61 @@ export const GET: APIRoute = async ({ params }) => {
           display: "flex",
           fontFamily: "Noto Sans JP",
           flexDirection: "column",
-          backgroundImage: "linear-gradient(135deg, #e8d4ff, #c8f8f0)",
-          padding: "60px",
-          position: "relative",
+          backgroundColor: "#e4e7eeff",
+          color: "#1E293B",
+          padding: "54px 72px",
         },
         children: [
-          // Main title
-          {
-            type: "div",
-            props: {
-              style: {
-                fontSize: "60px",
-                fontWeight: 700,
-                color: "#000",
-                marginBottom: "auto",
-              },
-              children: post.data.title,
-            },
-          },
-          // Footer area
           {
             type: "div",
             props: {
               style: {
                 display: "flex",
-                // justifyContent: "space-between",
-                justifyContent: "flex-start",
-                alignItems: "flex-end",
+                flexDirection: "column",
                 width: "100%",
-                gap: "20px",
+                justifyContent: "center",
+                flex: 1,
+                paddingBottom: "24px",
               },
               children: [
-                // Right bottom: Logo
+                {
+                  type: "div",
+                  props: {
+                    style: {
+                      width: "180px",
+                      height: "6px",
+                      backgroundColor: "#812990",
+                      marginBottom: "12px",
+                      marginLeft: titleInkOffset,
+                    },
+                  },
+                },
+                {
+                  type: "div",
+                  props: {
+                    style: {
+                      width: "100%",
+                      fontSize: titleFontSize,
+                      fontWeight: 700,
+                      lineHeight: 1.3,
+                      wordBreak: "break-word",
+                    },
+                    children: post.data.title,
+                  },
+                },
+              ],
+            },
+          },
+          {
+            type: "div",
+            props: {
+              style: {
+                display: "flex",
+                alignItems: "center",
+                gap: "16px",
+                flexShrink: 0,
+              },
+              children: [
                 {
                   type: "img",
                   props: {
@@ -81,41 +126,18 @@ export const GET: APIRoute = async ({ params }) => {
                     style: {
                       width: "80px",
                       height: "80px",
+                      borderRadius: "50%",
                     },
                   },
                 },
-                // Left bottom: Blog name and URL
                 {
                   type: "div",
                   props: {
                     style: {
-                      display: "flex",
-                      flexDirection: "column",
-                      gap: "5px",
+                      fontSize: "32px",
+                      fontWeight: 700,
                     },
-                    children: [
-                      {
-                        type: "div",
-                        props: {
-                          style: {
-                            fontSize: "32px",
-                            fontWeight: 500,
-                            color: "#000",
-                          },
-                          children: "こなぶろぐ",
-                        },
-                      },
-                      {
-                        type: "div",
-                        props: {
-                          style: {
-                            fontSize: "24px",
-                            color: "#555555",
-                          },
-                          children: "https://kona4.com/",
-                        },
-                      },
-                    ],
+                    children: "こなぶろぐ",
                   },
                 },
               ],
