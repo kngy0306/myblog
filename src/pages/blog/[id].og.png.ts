@@ -64,7 +64,7 @@ export const GET: APIRoute = async ({ params }) => {
           display: "flex",
           fontFamily: "Noto Sans JP",
           flexDirection: "column",
-          backgroundColor: "#e4e7eeff",
+          backgroundColor: "#efefef",
           color: "#1E293B",
           padding: "54px 72px",
         },
@@ -126,7 +126,8 @@ export const GET: APIRoute = async ({ params }) => {
                     style: {
                       width: "80px",
                       height: "80px",
-                      borderRadius: "50%",
+                      // Match the header's 8px radius on its 32px icon, scaled to 80px.
+                      borderRadius: "20px",
                     },
                   },
                 },
