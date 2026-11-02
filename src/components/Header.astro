@@ -5,19 +5,20 @@ import logoImage from "@/images/logo.svg";
 
 <header>
   <nav>
-    <div class="max-w-screen border-b-1 flex flex-wrap items-center justify-between mx-auto py-4 max-[450px]:flex-col">
+    <div class="max-w-screen border-b-1 flex flex-nowrap items-center justify-between mx-auto py-4">
       <div class="">
         <a
           href="/"
+          aria-label="こなぶろぐ ホーム"
           data-astro-prefetch
           class="flex items-center space-x-2 rtl:space-x-reverse hover:text-muted-foreground transition-all duration-200"
         >
           <Image src={logoImage} width={32} height={32} alt="logo画像" class="rounded-md" />
-          <span class="self-center text-xl font-bold whitespace-nowrap font-sans">こなぶろぐ</span>
+          <span class="self-center text-xl font-bold whitespace-nowrap font-sans max-[450px]:hidden">こなぶろぐ</span>
         </a>
       </div>
 
-      <div class="w-auto max-[450px]:pt-5" id="navbar-default">
+      <div class="w-auto shrink-0" id="navbar-default">
         <ul class="flex rounded-lg flex-row gap-3">
           <li>
             <a
