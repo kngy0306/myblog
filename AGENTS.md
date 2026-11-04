@@ -9,7 +9,7 @@
 - **コンテンツ**: MDX (Markdown + JSX)
 - **スタイリング**: Tailwind CSS + @tailwindcss/typography
 - **フォント**: Noto Sans JP
-- **リンター/フォーマッター**: ESLint + Prettier
+- **リンター/フォーマッター**: ESLint + bun fmt（AstroはPrettierへフォールバック）
 
 ## ディレクトリ構造
 
@@ -44,8 +44,12 @@ bun install      # 依存関係のインストール
 bun run dev      # 開発サーバー起動
 bun run build    # 本番ビルド
 bun run preview  # ビルド結果のプレビュー
-bun run format   # Prettierでフォーマット
+bun run format   # bun fmtでフォーマット
+bun run format:check # フォーマットの確認（書き込みなし）
 ```
+
+フォーマッターにはBun 1.4.4以降が必要。`mise.toml`でバージョンを管理している。
+既存の`.prettierrc.json`を共有し、`.astro`ファイルはPrettierへフォールバックするため、`prettier`と`prettier-plugin-astro`は削除しない。
 
 ## コンテンツ管理
 
