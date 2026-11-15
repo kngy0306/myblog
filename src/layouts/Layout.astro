@@ -44,6 +44,9 @@ const jsonLdGraph = [websiteJsonLd, ...(Array.isArray(jsonLd) ? jsonLd : jsonLd 
 
 // `</script>` でJSON-LDが途切れないよう `<` をエスケープする
 const jsonLdString = JSON.stringify(jsonLdGraph).replace(/</g, "\\u003c");
+
+// Googleタグは非同期スクリプトの読み込み前にキューを初期化する。
+// コマンドキューはArgumentsオブジェクトを使用するため、対応するESLintルールの例外をeslint.config.jsに定義する。
 ---
 
 <!doctype html>
@@ -105,12 +108,9 @@ const jsonLdString = JSON.stringify(jsonLdGraph).replace(/</g, "\\u003c");
       <slot />
       <Footer />
     </div>
-    <!-- Google tag (gtag.js): initialize the queue before loading the asynchronous tag. -->
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag() {
-        // Google tag's command queue uses Arguments objects.
-        // eslint-disable-next-line prefer-rest-params
         dataLayer.push(arguments);
       }
       gtag("js", new Date());
