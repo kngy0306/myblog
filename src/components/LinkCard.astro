@@ -26,13 +26,13 @@ const siteName = websiteData?.ogSiteName;
 ---
 
 <div
-  class="not-prose my-6 h-32 rounded-lg overflow-hidden border border-slate-200 bg-background hover:bg-slate-100 shadow-sm transition-colors"
+  class="not-prose my-6 h-32 rounded-lg overflow-hidden border border-border bg-background hover:bg-accent shadow-sm transition-colors"
 >
   <a href={linkUrl.href} target="_blank" rel="noopener noreferrer" class="flex flex-row h-32">
     <div class="flex min-w-0 flex-1 flex-col justify-center py-1 px-4 wrap-break-word">
       <div class="text-[1rem]/6 font-semibold text-foreground line-clamp-2">{title}</div>
-      {description && <div class="mt-1 text-sm text-gray-600 line-clamp-1">{description}</div>}
-      <div class="flex flex-row mt-2.5 items-center text-sm text-gray-500">
+      {description && <div class="mt-1 text-sm text-muted-foreground line-clamp-1">{description}</div>}
+      <div class="flex flex-row mt-2.5 items-center text-sm text-muted-foreground">
         <img
           src={faviconUrl}
           alt=""

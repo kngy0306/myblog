@@ -53,6 +53,18 @@ const jsonLdString = JSON.stringify(jsonLdGraph).replace(/</g, "\\u003c");
 <html lang="ja">
   <head>
     <meta charset="UTF-8" />
+    <meta name="color-scheme" content="light dark" />
+    <script is:inline>
+      // 描画前に保存したテーマを復元し、明るい画面のちらつきを防ぐ。
+      try {
+        const theme = localStorage.getItem("color-scheme");
+        if (theme === "light" || theme === "dark") {
+          document.querySelector('meta[name="color-scheme"]').content = theme;
+        }
+      } catch {
+        // 保存が制限されている場合はシステム設定を使用する。
+      }
+    </script>
     <meta name="viewport" content="width=device-width" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <Font cssVariable="--font-noto-sans-jp" />

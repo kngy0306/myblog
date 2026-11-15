@@ -33,17 +33,85 @@ body {
 }
 
 :root {
+  color-scheme: light dark;
   --radius: 0.625rem;
+  --border: #cbd5e1;
+  --ring: #2563eb;
+  --code-background: #f1f5f9;
+  --link-hover: #1d4ed8;
+  --theme-moon: block;
+  --theme-sun: none;
   --background: oklch(1 0 0);
   --foreground: oklch(0.129 0.042 264.695);
   --primary: oklch(0.208 0.042 265.755);
   --primary-foreground: oklch(0.984 0.003 247.858);
   --secondary: oklch(0.968 0.007 247.896);
   --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted-foreground: oklch(0.554 0.046 257.417);
+  --muted-foreground: #526176;
   --accent: oklch(0.968 0.007 247.896);
   --accent-foreground: oklch(0.208 0.042 265.755);
   --link-color: oklch(0.488 0.243 264.376);
+}
+
+/* JSが無効でもシステムの配色を適用する。手動選択はmeta経由で上書きする。 */
+@media (prefers-color-scheme: dark) {
+  :root:not(:has(> head > meta[name="color-scheme"][content="light"])) {
+    --background: #151b26;
+    --foreground: #e2e8f0;
+    --primary: #e2e8f0;
+    --primary-foreground: #151b26;
+    --secondary: #242e3e;
+    --secondary-foreground: #e2e8f0;
+    --muted-foreground: #a8b5c8;
+    --accent: #29364a;
+    --accent-foreground: #f1f5f9;
+    --border: #4b5b72;
+    --ring: #93c5fd;
+    --link-color: #93c5fd;
+    --link-hover: #bfdbfe;
+    --code-background: #283447;
+    --theme-moon: none;
+    --theme-sun: block;
+  }
+}
+
+:root:has(> head > meta[name="color-scheme"][content="dark"]) {
+  color-scheme: dark;
+  --background: #151b26;
+  --foreground: #e2e8f0;
+  --primary: #e2e8f0;
+  --primary-foreground: #151b26;
+  --secondary: #242e3e;
+  --secondary-foreground: #e2e8f0;
+  --muted-foreground: #a8b5c8;
+  --accent: #29364a;
+  --accent-foreground: #f1f5f9;
+  --border: #4b5b72;
+  --ring: #93c5fd;
+  --link-color: #93c5fd;
+  --link-hover: #bfdbfe;
+  --code-background: #283447;
+  --theme-moon: none;
+  --theme-sun: block;
+}
+
+:root:has(> head > meta[name="color-scheme"][content="light"]) {
+  color-scheme: light;
+}
+
+/* 現在のページを示す枠は両テーマで明瞭にする。 */
+[data-slot="pagination-link"][aria-current="page"] {
+  border-color: var(--muted-foreground);
+}
+
+.theme-toggle:not([hidden]) {
+  display: inline-flex;
+}
+.theme-moon {
+  display: var(--theme-moon);
+}
+.theme-sun {
+  display: var(--theme-sun);
 }
 
 @layer base {
@@ -61,6 +129,19 @@ body {
 
 .prose {
   --tw-prose-body: var(--foreground);
+  --tw-prose-headings: var(--foreground);
+  --tw-prose-lead: var(--muted-foreground);
+  --tw-prose-links: var(--link-color);
+  --tw-prose-bold: var(--foreground);
+  --tw-prose-counters: var(--muted-foreground);
+  --tw-prose-bullets: var(--muted-foreground);
+  --tw-prose-hr: var(--border);
+  --tw-prose-quotes: var(--muted-foreground);
+  --tw-prose-quote-borders: var(--border);
+  --tw-prose-captions: var(--muted-foreground);
+  --tw-prose-code: var(--foreground);
+  --tw-prose-th-borders: var(--border);
+  --tw-prose-td-borders: var(--border);
   font-size: 1rem;
   line-height: 1.65;
   max-width: 48rem;
@@ -90,7 +171,7 @@ body {
   margin-bottom: 0.75rem;
   padding-bottom: 0.375rem;
   line-height: 1.35;
-  border-bottom: 1px solid var(--color-zinc-200);
+  border-bottom: 1px solid var(--border);
 }
 
 .prose h3:not(.not-prose *, .not-prose) {
@@ -124,7 +205,7 @@ body {
 }
 
 .prose a:not(.not-prose *, .not-prose):hover {
-  color: var(--color-blue-500);
+  color: var(--link-hover);
 }
 
 /* Strong */
@@ -141,7 +222,7 @@ body {
 
 /* Inline code (not inside pre) */
 .prose code:not(pre code) {
-  background-color: var(--color-mist-100);
+  background-color: var(--code-background);
   padding: 0.125rem 0.375rem;
   border-radius: 0.25rem;
   font-size: 0.875em;
@@ -155,7 +236,7 @@ body {
 
 /* Block quotes */
 .prose blockquote {
-  color: var(--color-neutral-500);
+  color: var(--muted-foreground);
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
 }
@@ -174,14 +255,14 @@ body {
   padding: 0.625rem 0.75rem;
   text-align: center;
   vertical-align: middle;
-  border: 1px solid var(--color-slate-200);
-  background-color: var(--color-slate-100);
+  border: 1px solid var(--border);
+  background-color: var(--secondary);
   font-weight: 600;
 }
 
 .prose td {
   padding: 0.625rem 0.75rem;
-  border: 1px solid var(--color-slate-200);
+  border: 1px solid var(--border);
 }
 
 /* Images */
@@ -212,7 +293,21 @@ body {
 
 /* Horizontal rules */
 .prose hr {
-  border-color: var(--color-zinc-200);
+  border-color: var(--border);
   margin-top: 2.5rem;
   margin-bottom: 2.5rem;
+}
+
+@media (forced-colors: active) {
+  :root {
+    --background: Canvas;
+    --foreground: CanvasText;
+    --muted-foreground: CanvasText;
+    --border: CanvasText;
+    --ring: Highlight;
+    --link-color: LinkText;
+    --link-hover: LinkText;
+    --secondary: Canvas;
+    --code-background: Canvas;
+  }
 }

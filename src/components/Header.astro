@@ -1,5 +1,6 @@
 ---
 import { Image } from "astro:assets";
+import ThemeToggle from "@/components/ThemeToggle.astro";
 import logoImage from "@/images/logo.svg";
 ---
 
@@ -19,7 +20,7 @@ import logoImage from "@/images/logo.svg";
       </div>
 
       <div class="w-auto shrink-0" id="navbar-default">
-        <ul class="flex rounded-lg flex-row gap-3">
+        <ul class="flex items-center rounded-lg flex-row gap-1 sm:gap-3">
           <li>
             <a
               href="/"
@@ -35,6 +36,9 @@ import logoImage from "@/images/logo.svg";
               class="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
               >About</a
             >
+          </li>
+          <li>
+            <ThemeToggle />
           </li>
         </ul>
       </div>
