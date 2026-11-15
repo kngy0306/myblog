@@ -15,6 +15,8 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
   markdown: {
+    // MarkdownとMDXの両方で、コメント文字のコントラストを確保する。
+    shikiConfig: { theme: "github-dark-default" },
     processor: unified({
       remarkPlugins: [remarkBreaks],
     }),
