@@ -2,7 +2,23 @@
 @plugin "@tailwindcss/typography";
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
+/* 手動選択とシステム設定を同じ条件で扱い、dark:ユーティリティにも反映する。 */
+@custom-variant dark {
+  &:where(
+    :root:has(> head > meta[name="color-scheme"][content="dark"]),
+    :root:has(> head > meta[name="color-scheme"][content="dark"]) *
+  ) {
+    @slot;
+  }
+  @media (prefers-color-scheme: dark) {
+    &:where(
+      :root:not(:has(> head > meta[name="color-scheme"][content="light"])),
+      :root:not(:has(> head > meta[name="color-scheme"][content="light"])) *
+    ) {
+      @slot;
+    }
+  }
+}
 
 /* スクロールバーの有無でレイアウトが横にずれないよう領域を常に確保する */
 html {
@@ -53,9 +69,17 @@ body {
   --link-color: oklch(0.488 0.243 264.376);
 }
 
-/* JSが無効でもシステムの配色を適用する。手動選択はmeta経由で上書きする。 */
-@media (prefers-color-scheme: dark) {
-  :root:not(:has(> head > meta[name="color-scheme"][content="light"])) {
+/* パレットは一度だけ定義し、バリアント展開で両方の切り替え条件に適用する。 */
+:root {
+  --system-theme: light;
+  --theme: light;
+
+  @media (prefers-color-scheme: dark) {
+    --system-theme: dark;
+  }
+
+  @variant dark {
+    --theme: dark;
     --background: #151b26;
     --foreground: #e2e8f0;
     --primary: #e2e8f0;
@@ -73,30 +97,14 @@ body {
     --theme-moon: none;
     --theme-sun: block;
   }
-}
 
-:root:has(> head > meta[name="color-scheme"][content="dark"]) {
-  color-scheme: dark;
-  --background: #151b26;
-  --foreground: #e2e8f0;
-  --primary: #e2e8f0;
-  --primary-foreground: #151b26;
-  --secondary: #242e3e;
-  --secondary-foreground: #e2e8f0;
-  --muted-foreground: #a8b5c8;
-  --accent: #29364a;
-  --accent-foreground: #f1f5f9;
-  --border: #4b5b72;
-  --ring: #93c5fd;
-  --link-color: #93c5fd;
-  --link-hover: #bfdbfe;
-  --code-background: #283447;
-  --theme-moon: none;
-  --theme-sun: block;
-}
+  &:has(> head > meta[name="color-scheme"][content="dark"]) {
+    color-scheme: dark;
+  }
 
-:root:has(> head > meta[name="color-scheme"][content="light"]) {
-  color-scheme: light;
+  &:has(> head > meta[name="color-scheme"][content="light"]) {
+    color-scheme: light;
+  }
 }
 
 /* 現在のページを示す枠は両テーマで明瞭にする。 */

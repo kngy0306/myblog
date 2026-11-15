@@ -3,59 +3,54 @@
   type="button"
   hidden
   class="theme-toggle items-center justify-center size-11 rounded-md cursor-pointer hover:bg-accent hover:text-accent-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
-  aria-label="ダークモードに切り替える"
-  title="ダークモードに切り替える"
 >
-  <svg
-    class="theme-moon"
-    width="20"
-    height="20"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    stroke-width="1.8"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-    aria-hidden="true"
-  >
-    <path d="M20.9 13a9 9 0 0 1-9.9-9.9A9 9 0 1 0 20.9 13Z"></path>
-  </svg>
-  <svg
-    class="theme-sun"
-    width="20"
-    height="20"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    stroke-width="1.8"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-    aria-hidden="true"
-  >
-    <circle cx="12" cy="12" r="4"></circle>
-    <path
-      d="M12 2v2m0 16v2M2 12h2m16 0h2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42m0-14.14-1.42 1.42M6.35 17.65l-1.42 1.42"
-    ></path>
-  </svg>
+  <span class="theme-moon" title="ダークモードに切り替える">
+    <span class="sr-only">ダークモードに切り替える</span>
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.8"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M20.9 13a9 9 0 0 1-9.9-9.9A9 9 0 1 0 20.9 13Z"></path>
+    </svg>
+  </span>
+  <span class="theme-sun" title="ライトモードに切り替える">
+    <span class="sr-only">ライトモードに切り替える</span>
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.8"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      <circle cx="12" cy="12" r="4"></circle>
+      <path
+        d="M12 2v2m0 16v2M2 12h2m16 0h2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42m0-14.14-1.42 1.42M6.35 17.65l-1.42 1.42"
+      ></path>
+    </svg>
+  </span>
 </button>
 
 <script>
   const button = document.querySelector<HTMLButtonElement>("#theme-toggle");
   const meta = document.querySelector<HTMLMetaElement>('meta[name="color-scheme"]');
-  const system = window.matchMedia("(prefers-color-scheme: dark)");
 
   if (button && meta) {
-    const isDark = () => meta.content === "dark" || (meta.content === "light dark" && system.matches);
-    const updateLabel = () => {
-      const label = isDark() ? "ライトモードに切り替える" : "ダークモードに切り替える";
-      button.setAttribute("aria-label", label);
-      button.title = label;
-    };
-
     button.addEventListener("click", () => {
-      const target = isDark() ? "light" : "dark";
-      // システムと同じ配色へ戻す操作では、自動追従を再開する。
-      const override = target === (system.matches ? "dark" : "light") ? null : target;
+      // CSSが解決した表示とシステム設定を読むため、OS変更時にも状態がずれない。
+      const style = getComputedStyle(document.documentElement);
+      const target = style.getPropertyValue("--theme").trim() === "dark" ? "light" : "dark";
+      const override = target === style.getPropertyValue("--system-theme").trim() ? null : target;
       meta.content = override ?? "light dark";
       try {
         if (override) localStorage.setItem("color-scheme", override);
@@ -63,16 +58,17 @@
       } catch {
         // 保存できなくても、このページでの切り替えは適用する。
       }
-      updateLabel();
     });
 
-    system.addEventListener("change", updateLabel);
     window.addEventListener("storage", (event) => {
       if (event.key !== "color-scheme" && event.key !== null) return;
+      try {
+        if (event.storageArea !== localStorage) return;
+      } catch {
+        return;
+      }
       meta.content = event.newValue === "light" || event.newValue === "dark" ? event.newValue : "light dark";
-      updateLabel();
     });
-    updateLabel();
     button.hidden = false;
   }
 </script>
