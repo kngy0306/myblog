@@ -18,5 +18,12 @@ export default [
   },
   ...eslintPluginAstro.configs["jsx-a11y-recommended"],
 
+  {
+    files: ["src/layouts/Layout.astro/*.js", "src/layouts/Layout.astro/*.ts"],
+    rules: {
+      "prefer-rest-params": "off",
+    },
+  },
+
   eslintConfigPrettier,
 ];
