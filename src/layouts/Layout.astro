@@ -13,9 +13,20 @@ interface Props {
   modifiedTime?: Date;
   tags?: string[];
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  showFooter?: boolean;
 }
 
-const { title, description, ogImage, pageType = "website", publishedTime, modifiedTime, tags, jsonLd } = Astro.props;
+const {
+  title,
+  description,
+  ogImage,
+  pageType = "website",
+  publishedTime,
+  modifiedTime,
+  tags,
+  jsonLd,
+  showFooter = true,
+} = Astro.props;
 
 const siteTitle = "こなぶろぐ";
 const pageTitle = title ? `${title} | ${siteTitle}` : siteTitle;
@@ -118,7 +129,7 @@ const jsonLdString = JSON.stringify(jsonLdGraph).replace(/</g, "\\u003c");
     <div class="px-4 sm:px-10 max-w-4xl mx-auto my-0 wrap-anywhere">
       <Header />
       <slot />
-      <Footer />
+      {showFooter && <Footer />}
     </div>
     <script is:inline>
       window.dataLayer = window.dataLayer || [];

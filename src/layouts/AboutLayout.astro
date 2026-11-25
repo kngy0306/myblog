@@ -1,0 +1,24 @@
+---
+import Layout from "@/layouts/Layout.astro";
+
+interface Props {
+  frontmatter: {
+    title?: string;
+    description?: string;
+  };
+}
+
+const { frontmatter } = Astro.props;
+---
+
+<Layout title={frontmatter.title} description={frontmatter.description} showFooter={false}>
+  <div class="about-content pb-10 prose">
+    <slot />
+  </div>
+</Layout>
+
+<style>
+  .about-content > :global(:first-child) {
+    margin-top: 0;
+  }
+</style>
